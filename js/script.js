@@ -59,7 +59,8 @@ const teamMembers = [
         nome: 'Barbara Ramos',
         ruolo: 'Graphic Designer',
         foto: 'barbara-ramos-graphic-designer.jpg'
-    }
+    },
+    
 ];
 
 
@@ -70,46 +71,58 @@ const membersElement = document.querySelector("#members");
 for(let i = 0; i < teamMembers.length; i++) {
 
     // apro la lista in pagina
-    const listElement = document.createElement("ul");
+    const singleMemberElement = document.createElement("section");
+    singleMemberElement.className = "member";
 
     // questa variabile ad ogni iterazione diventa l'oggetto attuale dell'array in cui stiamo ciclando
-    const actualMember = teamMembers[i]
+    const actualMember = teamMembers[i];
 
     
     // ciclo tutte le proprietà dell'oggetto attuale
     for(let key in actualMember) {
+        // dentro il for-in
+        // key ha di volta in volta il nome della chiave delle proprietà
+        // del nostro oggetto
 
-        // creo l'elemento interno della lista che andrà in pagina
-        const listItemElement = document.createElement("li");
-
+        
         // se la chiave è una foto aggiungo un elemento <img> in pagina
         if(key != "foto") {
             
-            listItemElement.innerText = `${key}: ${ actualMember[key] }`;
+            // creo l'elemento interno della lista che andrà in pagina
+            const memberDetailElement = document.createElement("div");
+
+            memberDetailElement.innerText = actualMember[key];
             
+            // il mio elemento deve avere come classe la chiave della sua proprietà
+            memberDetailElement.className = key;
+            
+            // aggiungo l'elemento creato al div del membro
+            singleMemberElement.append(memberDetailElement);
+
         } else {
 
             // creare l'elemento immagine
             const listImageElement = document.createElement("img");
+            // specifico il percorso relativo partendo dal file index.html
             listImageElement.src = "./img/" + actualMember.foto;
-            listImageElement.alt = "immagine membro";
-            listItemElement.append(listImageElement);
-            
+            // imposto l'attributo tag
+            listImageElement.alt = "immagine di " + actualMember.nome;
+            // aggiungo l'elemento creato al div del membro
+            singleMemberElement.append(listImageElement);
 
         }
 
-        listElement.append(listItemElement);
 
         console.log(`${key}: ${ actualMember[key] }`);
 
         
     }
 
-    // console.log(listElement);
+    // console.log(singleMemberElement);
     console.log("----------------------")
 
     // aggiungo gli elementi alla lista
-    membersElement.append(listElement);
+    membersElement.append(singleMemberElement);
 
 
 }

@@ -1,0 +1,42 @@
+body {
+    background-color: #ccc;
+}
+
+#members {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    gap: 20px;
+}
+
+
+#members .member {
+    display: flex;
+    flex-flow: column;
+
+    width: calc(100% / 3 - 20px / 3 * 2);
+
+    padding: 20px;
+
+    text-align: center;
+
+    background-color: white;
+
+    box-shadow: 2px 8px 8px rgba(0,0,0,0.2);
+}
+
+.member img {
+    order: -1;
+
+    width: 100%;
+
+    margin-bottom: 1em;
+}
+
+.member .nome {
+    font-size: 1.4em;
+    font-weight: bold;
+    font-family: serif;
+    color: #555;
+}
