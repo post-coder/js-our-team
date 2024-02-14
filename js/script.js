@@ -79,12 +79,30 @@ for(let i = 0; i < teamMembers.length; i++) {
     // ciclo tutte le proprietà dell'oggetto attuale
     for(let key in actualMember) {
 
-        console.log(`${key}: ${ actualMember[key] }`);
-
         // creo l'elemento interno della lista che andrà in pagina
         const listItemElement = document.createElement("li");
-        listItemElement.innerText = `${key}: ${ actualMember[key] }`;
+
+        // se la chiave è una foto aggiungo un elemento <img> in pagina
+        if(key != "foto") {
+            
+            listItemElement.innerText = `${key}: ${ actualMember[key] }`;
+            
+        } else {
+
+            // creare l'elemento immagine
+            const listImageElement = document.createElement("img");
+            listImageElement.src = "./img/" + actualMember.foto;
+            listImageElement.alt = "immagine membro";
+            listItemElement.append(listImageElement);
+            
+
+        }
+
         listElement.append(listItemElement);
+
+        console.log(`${key}: ${ actualMember[key] }`);
+
+        
     }
 
     // console.log(listElement);
